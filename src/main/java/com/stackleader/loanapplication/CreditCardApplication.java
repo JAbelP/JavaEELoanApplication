@@ -6,13 +6,17 @@ package com.stackleader.loanapplication;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  *
  * @author intern
  */
 public class CreditCardApplication extends BaseApplication {
-
+    @Id
+    @GeneratedValue
+    int id;
     int requestedCreditLimit;
     String cardType;
     List<Borrower> borrowers = new ArrayList<Borrower>();
@@ -40,6 +44,14 @@ public class CreditCardApplication extends BaseApplication {
     
     
 //-------------test
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     
     

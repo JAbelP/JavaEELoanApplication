@@ -3,6 +3,9 @@ package com.stackleader.loanapplication;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+// this import isn't working (Why?) import javax.xml.bind.annotation.XmlTransient; //TODO
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,6 +17,11 @@ import javax.annotation.processing.Generated;
  * @author intern
  */
 public class Borrower {
+    
+    @Id
+    @GeneratedValue
+    //@XmlTransient // This won't work? Check line 8 // TODO
+    int id;
     String firstName;
     String lastName;
     int age;
@@ -37,19 +45,7 @@ public class Borrower {
         this.ssn = ssn;
         this.relationship = relationship;
     }
-    //sample default (TESTING)
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    
-    
-    
     
     
     
@@ -88,6 +84,37 @@ public class Borrower {
     
     
     //-----------------TESTING 
+    
+    
+    
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    //Trying to make this transent
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    //Transient
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    
+    
 
     public String getFirstName() {
         return firstName;
