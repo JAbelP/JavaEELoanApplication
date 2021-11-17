@@ -38,8 +38,10 @@ public class LoanApi {
            //you prob need a database.
            
            //Test Data
-           CreditCardApplication cca = new CreditCardApplication();
-           cca.fillBorrowers();
+           
+
+          CreditCardApplication cca = new CreditCardApplication();
+          cca.fillBorrowers();
            //Test Data
            
            return cca;

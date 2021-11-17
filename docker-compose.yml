@@ -1,0 +1,20 @@
+# docker-compose.yml
+version: '3.7'
+services:
+  javaee-dev-db:
+    image: postgres:14.0
+    ports:
+      - 5485:5432
+    container_name: javaee-db
+    user: "1000"
+    environment:
+      - POSTGRES_PASSWORD=stackleader
+      - POSTGRES_USER=stackleader
+      - POSTGRES_DB=stackleader
+    volumes:
+      - type: bind
+        source: ./javaee-db/postgres
+        target: /var/lib/postgresql/data
+      - type: bind
+        source: ./javaee-db_init
+        target: /docker-entrypoint-initdb.d
