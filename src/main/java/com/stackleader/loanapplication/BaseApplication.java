@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class BaseApplication {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private int requestedCreditLimit;
     private String cardType;
     private List<Borrower> borrowers = new ArrayList<Borrower>();
@@ -29,11 +29,11 @@ public class BaseApplication {
         this.borrowers = borrowers;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

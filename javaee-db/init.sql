@@ -20,24 +20,28 @@ CREATE TABLE employer(
   	lastName VARCHAR not NULL,
   	age int not NULL,
   	address VARCHAR not NULL,
+    city VARCHAR NOT NULL,
+    stat VARCHAR NOT NULL,
   	zip int not NULL,
   	ssn int not NULL,
   	relation VARCHAR not NULL,
   	appID int not NULL
   );
   
-  INSERT INTO borrowers(firstName,lastName,age,address,zip,ssn,relation,appID )
-  VALUES('abel','P',24,'example road',2222222,000000000,'son',1);
-  INSERT INTO borrowers(firstName,lastName,age,address,zip,ssn,relation,appID )
-  VALUES('Joel','P',50,'example road',2222222,111111111,'father',1);
-  INSERT INTO borrowers(firstName,lastName,age,address,zip,ssn,relation,appID )
-  VALUES('Eva','C',50,'example road',2222222,222222222,'mother',2);
+  INSERT INTO borrowers(firstName,lastName,age,address,city,stat,zip,ssn,relation,appID)
+  VALUES('abel','P',24,'example road','garner','NC',2222222,000000000,'son',1);
+  INSERT INTO borrowers(firstName,lastName,age,address,city,stat,zip,ssn,relation,appID)
+  VALUES('Joel','P',50,'example road','garner','NC',2222222,111111111,'father',1);
+  INSERT INTO borrowers(firstName,lastName,age,address,city,stat,zip,ssn,relation,appID)
+  VALUES('Eva','C',50,'example road','Cow Drive','NY',2222222,222222222,'mother',2);
   
-  CREATE TABLE applications(
+CREATE TABLE applications(
   	id serial PRIMARY KEY,
   	creditLimit int  NOT NULL,
-  	cardType VARCHAR
+  	cardType VARCHAR,
+  	lendType VARCHAR
   );
-  INSERT INTO applications(creditLimit,cardType )VALUES(500,'VISA');
-  INSERT INTO applications(creditLimit,cardType )VALUES(3010,'MasterCard');
+  INSERT INTO applications(creditLimit,cardType,lendType )VALUES(500,'VISA','Credit Card');
+  INSERT INTO applications(creditLimit,cardType,lendType )VALUES(3010,'MasterCard','Credit Card');
+  
   

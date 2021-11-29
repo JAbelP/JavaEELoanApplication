@@ -16,14 +16,12 @@ import javax.persistence.Id;
 public class CreditCardApplication extends BaseApplication {
     @Id
     @GeneratedValue
-    int id;
+    long id;
     int requestedCreditLimit;
     String cardType;
     List<Borrower> borrowers = new ArrayList<Borrower>();
 
     public CreditCardApplication() {
-        this.requestedCreditLimit = 5000;
-        this.cardType = "VISA";
         
     }
 //-------------test
@@ -45,11 +43,11 @@ public class CreditCardApplication extends BaseApplication {
     
 //-------------test
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     
