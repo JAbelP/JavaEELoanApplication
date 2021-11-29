@@ -16,10 +16,30 @@ public class Employment {
     long employerPhone;
 
     public Employment() {
-        this.startDate = new Date(2019,10,10);
-        this.endDate = new Date(2021,10,1);
-        this.employerName= "Stack Leader";
-        this.employerPhone = 7049315330L;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public long getEmployerPhone() {
+        return employerPhone;
+    }
+
+    public void setEmployerPhone(long employerPhone) {
+        this.employerPhone = employerPhone;
     }
 
     public String getEmployerName() {

@@ -47,7 +47,7 @@ public class Borrower {
     
     
     
-    //----------THIS IS FOR TESTING ONLY.
+
     
     
     public Borrower() {
@@ -55,33 +55,21 @@ public class Borrower {
             Concord, NC 28027
             1-704-931-5330
         */
-        this.firstName = "Bob";
-        this.lastName = "Smith";
-        this.age = 25;
-        this.address = "325 McGill Avenue, NW, Suite 507";
-        this.city = "concord";
-        this.state = "NC";
-        this.zip = 28027;
-        this.ssn = 123456789;
-        this.relationship = "Relationship";
-        fillEmploye();
     }
     
-    public void fillEmploye(){
-        
-        for (int i = 0; i < 10; i++) {
-            Employment e = new Employment();
-            String s = Integer.toString(i);
-            e.setEmployerName(e.getEmployerName() +  s);
-            this.employers.add(e);
-            
-        }
-    }
+//    public void fillEmploye(){
+//        
+//        for (int i = 0; i < 10; i++) {
+//            Employment e = new Employment();
+//            String s = Integer.toString(i);
+//            e.setEmployerName(e.getEmployerName() +  s);
+//            this.employers.add(e);
+//            
+//        }
+//    }
+//    
+//  
     
-  
-    
-    
-    //-----------------TESTING 
     
     
     

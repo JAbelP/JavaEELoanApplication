@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.sql.DataSource;
 
 /**
@@ -24,6 +25,9 @@ public class BorrowersDAO {
     @Resource(lookup = "java:jboss/postgresql")
     DataSource dataSource;
     
+    @Inject
+    EmployerDAO edao;
+    
     
     public ArrayList<Borrower> fetchByID(long id) throws SQLException{
         ArrayList<Borrower> borrowers= new ArrayList<Borrower>();
@@ -34,7 +38,7 @@ public class BorrowersDAO {
             try (ResultSet rs = stmt.executeQuery();) {
                 while (rs.next()) {
                     Borrower borrower = new Borrower();
-                    borrower.setId(id);
+                    borrower.setId(rs.getInt("id"));
                     borrower.setAge(rs.getInt("age"));
                     borrower.setAddress(rs.getString("address"));
                     borrower.setFirstName(rs.getString("firstname"));
@@ -43,6 +47,7 @@ public class BorrowersDAO {
                     borrower.setCity(rs.getString("city"));
                     borrower.setSsn(rs.getInt("ssn"));
                     borrower.setZip(rs.getInt("zip"));
+                    borrower.setEmployers(edao.fetchByID(rs.getInt("id")));
                     borrowers.add(borrower);
                 }
             }

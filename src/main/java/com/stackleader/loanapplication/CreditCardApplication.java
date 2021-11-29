@@ -32,7 +32,6 @@ public class CreditCardApplication extends BaseApplication {
             String s = Integer.toString(i);
             b.setFirstName(b.getFirstName()+ s);
             b.setLastName(b.getLastName() + s);
-            b.fillEmploye();
             this.borrowers.add(b);
             
         }
