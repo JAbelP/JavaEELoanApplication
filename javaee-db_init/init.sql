@@ -1,5 +1,5 @@
-CREATE TABLE employer(
-  	id serial PRIMARY KEY,
+CREATE TABLE employment(
+  	id SERIAL PRIMARY KEY,
   	startDate date,
   	endDate date,
   	employerName VARCHAR,
@@ -7,15 +7,15 @@ CREATE TABLE employer(
 	borrowerId int
 	);
   
-  INSERT INTO employer(startDate,endDate,employerName,employerPhone, borrowerId)
+  INSERT INTO employment(startDate,endDate,employerName,employerPhone, borrowerId)
   VALUES('2021-10-04','2022-10-04','Five Below',9999999999,1 );
-  INSERT INTO employer(startDate,endDate,employerName,employerPhone,borrowerId)
+  INSERT INTO employment(startDate,endDate,employerName,employerPhone,borrowerId)
   VALUES('1997-10-04','2022-10-04','IBM',8888888888,1);
-  INSERT INTO employer(startDate,endDate,employerName,employerPhone,borrowerId)
+  INSERT INTO employment(startDate,endDate,employerName,employerPhone,borrowerId)
   VALUES('2010-10-04','2022-10-04','Stack leader',77777777777,3);
   
   CREATE TABLE borrowers(
-  	id serial PRIMARY KEY,
+  	id SERIAL PRIMARY KEY,
 	firstName VARCHAR  not NULL,
   	lastName VARCHAR not NULL,
   	age int not NULL,
@@ -36,12 +36,12 @@ CREATE TABLE employer(
   VALUES('Eva','C',50,'example road','Cow Drive','NY',2222222,222222222,'mother',2);
   
 CREATE TABLE applications(
-  	id serial PRIMARY KEY,
+  	id SERIAL PRIMARY KEY,
   	creditLimit int  NOT NULL,
   	cardType VARCHAR,
   	lendType VARCHAR
   );
   INSERT INTO applications(creditLimit,cardType,lendType )VALUES(500,'VISA','Credit Card');
   INSERT INTO applications(creditLimit,cardType,lendType )VALUES(3010,'MasterCard','Credit Card');
-  
-  
+
+  /*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*/

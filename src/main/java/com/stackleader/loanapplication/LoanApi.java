@@ -4,15 +4,23 @@
  */
 package com.stackleader.loanapplication;
 
+import com.stackleader.loanapplication.DAO.ApplicationDAO;
+import com.stackleader.loanapplication.DAO.BorrowersDAO;
+import com.stackleader.loanapplication.DAO.EmployerDAO;
+import com.stackleader.loanapplication.model.BaseApplication;
+import com.stackleader.loanapplication.model.Borrower;
+import com.stackleader.loanapplication.model.Employment;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/cc/applications") 
 public class LoanApi {
@@ -24,40 +32,42 @@ public class LoanApi {
     //create a credit card application here for a list of borrowers(?).    
     @Inject
     ApplicationDAO applicationDAO;
+    @Inject
+    BorrowersDAO borrowerDAO;
+    @Inject
+    EmployerDAO employerDAO; 
 
-    @Produces(MediaType.APPLICATION_JSON)//needs to be a json file
+   
     @GET
-    public BaseApplication jsonMessage() {
-        //TODO make it looks through the users for the final point "application ID"
-        //you prob need a database.
+    @Produces(MediaType.APPLICATION_JSON)//needs to be a json file
+    public Response jsonMessage() throws SQLException {
 
-        //Test Data
-        CreditCardApplication cca = new CreditCardApplication();
-        cca.fillBorrowers();
-        //Test Data
-
-        return cca;
+        return Response.ok(applicationDAO.fullList()).build();
     }
 
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public BaseApplication trialApplication(@PathParam("id") long id) throws SQLException {
+    public Response trialApplication(@PathParam("id") long id) throws SQLException {
         BaseApplication app = applicationDAO.fetchByUUID(id);
-        return app;
+        return Response.ok(app).build();
     }
 
-    @GET
-    @Path("/Example")
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public List trialApplicationList() {
-
-        List<BaseApplication> gg = new ArrayList<>();
-        BaseApplication trialApp = new CreditCardApplication();
-        BaseApplication trialApp2 = new CreditCardApplication();
-        gg.add(trialApp);
-        gg.add(trialApp2);
-        return gg;
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response postApplication (@Valid BaseApplication application) throws SQLException{
+        
+        Response response = applicationDAO.postApplication(application);
+        for(Borrower borrower : application.getBorrowers() ){
+            borrowerDAO.postBorrower(borrower, application.getId());
+            for (Employment employers: borrower.getEmployers()){
+                employerDAO.postEmployer(employers, borrower.getId());
+            }
+        }
+        
+        return response;
+        
+        
     }
-
 }
